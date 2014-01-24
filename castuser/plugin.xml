@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+    <name>
+        <lang name="default">Top 32</lang>
+        <lang name="russian">User Cast</lang>
+    </name>
+    <author>
+        <lang name="default">author</lang>
+        <lang name="russian">Артем tema_mak Маковецкий</lang>
+    </author>
+    <homepage>http://livestreet.ru</homepage>
+    <version>0.0.1</version>
+    <requires>
+        <livestreet>1.0.1</livestreet>
+        <plugins>
+        </plugins>
+    </requires>
+    <description>
+        <lang name="default">Description of plugin Events</lang>
+        <lang name="russian">Информирование пользователя об упоминании в тексте</lang>
+    </description>
+</plugin>
