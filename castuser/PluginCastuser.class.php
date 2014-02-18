@@ -16,20 +16,21 @@ class PluginCastuser extends Plugin {
         ),      
 	);
 
-    // Активация плагина
     public function Activate() {
-    	//TODO add all sql script
+        $this->Cache_Clean();
+        if (!$this->isTableExists('prefix_user_cast_history')) {
+            $resutls = $this->ExportSQL(dirname(__FILE__) . '/activate.sql');
+            return $resutls['result'];
+        }
+
         return true;
     }
 
-    // Деактивация плагина
     public function Deactivate(){
-
+    	$this->Cache_Clean();
     	return true;
     }
 
-
-    // Инициализация плагина
     public function Init() {    	
 		return true;
     }
