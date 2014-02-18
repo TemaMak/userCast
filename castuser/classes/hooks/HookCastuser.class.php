@@ -17,8 +17,10 @@ class PluginCastuser_HookCastuser extends Hook
     public function NotifyCastedUserTopic($aParams)
     {        
     	$oTopic = $aParams['oTopic'];
-    	$oTopic->setBlog($this->Blog_GetBlogById($oTopic->getBlogId()));
-    	$this->PluginCastuser_Cast_sendCastNotify('topic',$oTopic,null,$oTopic->getTextSource());
+    	if ($oTopic->getPublish()==1 ){    		
+    		$oTopic->setBlog($this->Blog_GetBlogById($oTopic->getBlogId()));
+    		$this->PluginCastuser_Cast_sendCastNotify('topic',$oTopic,null,$oTopic->getTextSource());
+    	}
     }
 
     
