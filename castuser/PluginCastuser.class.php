@@ -9,12 +9,6 @@ if (!class_exists('Plugin')) {
 
 class PluginCastuser extends Plugin {
 
-    public $aInherits = array(
-         'module' => array(
-    		'ModuleNotify' => '_ModuleNotify',
-        ),      
-	);
-
     public function Activate() {
         $this->Cache_Clean();
         if (!$this->isTableExists('prefix_user_cast_history')) {

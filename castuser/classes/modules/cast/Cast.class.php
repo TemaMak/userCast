@@ -70,11 +70,13 @@ class PluginCastuser_ModuleCast extends Module
 				'oUserMarked' => $oUser,		
 			);
 			
+			$sTemplateName = 'notify.'.$sTarget.'.tpl';
+			
 			$sLangDir = Plugin::GetTemplatePath('castuser') . 'notify/' . $this->Lang_GetLang();
 			if (is_dir($sLangDir)) {
-				$sPath = $sLangDir . '/notify.'.$sTarget.'.tpl';
+				$sPath = $sLangDir.'/'.$sTemplateName;
 			} else {
-				$sPath = Plugin::GetTemplatePath('castuser') . 'notify/' . $this->Lang_GetLangDefault() . '/notify.'.$sTarget.'.tpl';
+				$sPath = Plugin::GetTemplatePath('castuser') . 'notify/' . $this->Lang_GetLangDefault() .'/'. $sTemplateName;
 			}
 
 			$sText = $oViewerLocal->Fetch($sPath);
@@ -84,9 +86,8 @@ class PluginCastuser_ModuleCast extends Module
 			
 			$oTalk = $this->Talk_SendTalk($sTitle, $sText, $this->oUserCurrent, array($oUser), false, false);
 			
-			//Send($oUserTo,$sTemplate,$sSubject,$aAssign=array(),$sPluginName=null)
 			$this->Notify_Send(
-				$oUser, 'notify.'.$sTarget.'.tpl' , $sTitle, $aAssigin, 'castuser'
+				$oUser, $sTemplateName , $sTitle, $aAssigin, 'castuser'
 			);
 						
 			$this->Talk_DeleteTalkUserByArray($oTalk->getId(), $this->oUserCurrent->getId());
