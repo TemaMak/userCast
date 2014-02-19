@@ -86,7 +86,7 @@ class PluginCastuser_ModuleCast extends Module
 			
 			//Send($oUserTo,$sTemplate,$sSubject,$aAssign=array(),$sPluginName=null)
 			$this->Notify_Send(
-				$oUser, '/notify.'.$sTarget , $sTitle, $aAssigin, 'castuser'
+				$oUser, 'notify.'.$sTarget.'.tpl' , $sTitle, $aAssigin, 'castuser'
 			);
 						
 			$this->Talk_DeleteTalkUserByArray($oTalk->getId(), $this->oUserCurrent->getId());
