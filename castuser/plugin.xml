@@ -2,14 +2,14 @@
 <plugin>
     <name>
         <lang name="default">User Cast</lang>
-        <lang name="russian">User Cast</lang>
+        <lang name="russian">Информирование пользователя об упоминании в тексте</lang>
     </name>
     <author>
         <lang name="default">author</lang>
         <lang name="russian">Артем tema_mak Маковецкий</lang>
     </author>
     <homepage>http://livestreet.ru</homepage>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <requires>
         <livestreet>1.0.1</livestreet>
         <plugins>
