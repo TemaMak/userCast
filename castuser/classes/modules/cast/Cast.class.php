@@ -62,11 +62,20 @@ class PluginCastuser_ModuleCast extends Module
 			$oViewerLocal->Assign('oTarget', $oTarget);
 			$oViewerLocal->Assign('oParentTarget', $oParentTarget);
 			$oViewerLocal->Assign('oUserMarked', $oUser);
-
+		
+			$aAssigin = array(
+				'oUser' => $this->oUserCurrent,
+				'oTarget' => $oTarget,
+				'oParentTarget' => $oParentTarget,
+				'oUserMarked' => $oUser,		
+			);
+			
 			$sLangDir = Plugin::GetTemplatePath('castuser') . 'notify/' . $this->Lang_GetLang();
 			if (is_dir($sLangDir)) {
+				$sTemplateName = 'notify/' . $this->Lang_GetLang().'/notify.'.$sTarget;
 				$sPath = $sLangDir . '/notify.'.$sTarget.'.tpl';
 			} else {
+				$sTemplateName = 'notify/' .$this->Lang_GetLangDefault().'/notify.'.$sTarget;
 				$sPath = Plugin::GetTemplatePath('castuser') . 'notify/' . $this->Lang_GetLangDefault() . '/notify.'.$sTarget.'.tpl';
 			}
 
@@ -77,17 +86,11 @@ class PluginCastuser_ModuleCast extends Module
 			
 			$oTalk = $this->Talk_SendTalk($sTitle, $sText, $this->oUserCurrent, array($oUser), false, false);
 			
-			/**
-			* Отправляем пользователю заявку
-			*/
-			$this->Notify_SendCastedNotify(
-				$oUser, $this->oUserCurrent, $sText, $sTitle
+			//Send($oUserTo,$sTemplate,$sSubject,$aAssign=array(),$sPluginName=null)
+			$this->Notify_Send(
+				$oUser, $sTemplateName , $sTitle, $aAssigin, castuser
 			);
-			
-			/**
-			* Удаляем отправляющего юзера из переписки
-			*/
-			
+						
 			$this->Talk_DeleteTalkUserByArray($oTalk->getId(), $this->oUserCurrent->getId());
 			
 			$this->oMapper->saveExist($sTarget,$oTarget->getId(),$oUser->getId());

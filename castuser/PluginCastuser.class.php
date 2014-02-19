@@ -11,7 +11,6 @@ class PluginCastuser extends Plugin {
 
     public $aInherits = array(
          'module' => array(
-            'ModuleText' => '_ModuleText',
     		'ModuleNotify' => '_ModuleNotify',
         ),      
 	);
